@@ -1,0 +1,22 @@
+<!-- templates/seller_dashboard.html -->
+{% extends 'base.html' %}
+
+{% block title %}Painel do Vendedor{% endblock %}
+
+{% block content %}
+<h1>Painel do Vendedor</h1>
+<form method="POST" enctype="multipart/form-data">
+    <label for="nome">Nome do Produto:</label>
+    <input type="text" name="nome" required>
+    <label for="descricao">Descrição:</label>
+    <input type="text" name="descricao" required>
+    <label for="preco">Preço:</label>
+    <input type="number" name="preco" step="0.01" required>
+    <label for="unidade">Unidade Disponível:</label>
+    <input type="number" name="unidade" required>
+    <label for="imagem">Imagem do Produto:</label>
+    <input type="file" name="imagem" accept="image/*" required>
+    <button type="submit">Adicionar Produto</button>
+</form>
+<a href="{{ url_for('index') }}">Voltar para a Loja</a>
+{% endblock %}
