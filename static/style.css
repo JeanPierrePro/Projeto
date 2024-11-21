@@ -117,7 +117,7 @@ main {
 /* Estilo do botão ao passar o mouse */
 .produto form button[type="submit"]:hover {
     background-color: #050504; /* Cor de fundo ciano ao passar o mouse */
-    color: #09ffe6; /* Cor do texto preta ao passar o mouse */
+    color: #0ff8e1; /* Cor do texto preta ao passar o mouse */
     transform: scale(1.05); /* Efeito de aumento suave */
 }
 
