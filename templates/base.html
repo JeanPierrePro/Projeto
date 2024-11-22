@@ -9,13 +9,11 @@
 <body>
     <nav>
         <ul>
-            <li><a href="{{ url_for('index') }}">Início</a></li>
-            <li><a href="{{ url_for('register') }}">Registrar</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('products') }}">Produtos</a></li>
             <li><a href="{{ url_for('cart') }}">Carrinho</a></li>
-            {% if session.get('user_type') == 'vendedor' %}
-                <li><a href="{{ url_for('seller_dashboard') }}">Adicionar Produto</a></li>
-            {% endif %}
+            <li><a href="{{ url_for('profile') }}">Minha Conta</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li> <!-- Link para Login -->
         </ul>
     </nav>
     <div class="container">
@@ -30,10 +28,13 @@
         {% endwith %}
 
 
+
         <form action="{{ url_for('search') }}" method="GET" class="search-form">
             <input type="text" name="query" placeholder="Buscar produtos..." required>
             <button type="submit">Buscar.</button>
         </form>
+
+
 
         {% block content %}{% endblock %}
     </div>

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Meu Perfil{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>Meu Perfil</h1>
+    
+    {% if usuario %}
+        {% if usuario.foto_perfil %}
+            <img src="{{ url_for('static', filename=usuario.foto_perfil) }}" alt="Foto de Perfil" style="width: 150px; height: auto; border-radius: 75px;">
+        {% else %}
+            <p>Foto de perfil não disponível.</p>
+        {% endif %}
+        <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
+        <p><strong>Tipo de Usuário:</strong> {{ usuario.tipo }}</p>
+        
+        <a href="{{ url_for('edit_profile') }}" class="edit-profile-button">Editar Perfil</a>
+    {% else %}
+        <p>Usuário não encontrado.</p>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}">Voltar para a Loja</a>
+</div>
+{% endblock %}

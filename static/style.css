@@ -73,36 +73,36 @@ main {
     padding: 15px;
     margin: 50px auto;
     width: 80%;
-    max-width: 200px;
+    max-width: 250px;
     text-align: center;
 }
 
 /* Estilo para o nome do produto */
-.produto h3 {
-    color: #07fddd;
-    font-size: 1.2em;
-    margin-bottom: 10px;
+.produto h2 {
+    color: #00ffff; /* Cor ciano para o nome do produto */
+    text-align: center; /* Centraliza o texto */
 }
 
-/* Estilo para a descrição e o preço do produto */
+/* Estilo para a descrição do produto */
 .produto p {
-    color: #05fcf8;
-    margin: 5px 0;
+    color: #00ffff; /* Cor ciano para a descrição do produto */
+    text-align: center; /* Centraliza o texto */
 }
 
 /* Estilo para a imagem do produto */
 .produto img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    border-radius: 5px;
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que a imagem seja tratada como um bloco */
+    margin-left: auto; /* Centraliza a imagem */
+    margin-right: auto; /* Centraliza a imagem */
 }
 
 /* Estilo para o botão de exclusão dentro do formulário */
 .produto form button[type="submit"] {
     background-color: #010000; /* Fundo preto */
     color: #fff; /* Texto branco */
-    padding: 10px 20px; /* Ajuste no tamanho do botão */
+    padding: 10px 10px; /* Ajuste no tamanho do botão */
     border: none;
     border-radius: 25px; /* Bordas arredondadas */
     cursor: pointer;
@@ -117,7 +117,7 @@ main {
 /* Estilo do botão ao passar o mouse */
 .produto form button[type="submit"]:hover {
     background-color: #050504; /* Cor de fundo ciano ao passar o mouse */
-    color: #09ffe6; /* Cor do texto preta ao passar o mouse */
+    color: #0ff8e1; /* Cor do texto preta ao passar o mouse */
     transform: scale(1.05); /* Efeito de aumento suave */
 }
 
@@ -189,7 +189,7 @@ form button[type="submit"]:hover {
     flex-direction: column;
     align-items: center; /* Centraliza horizontalmente */
     justify-content: center; /* Centraliza verticalmente */
-    min-height: 80vh; /* Altura mínima para centralização vertical */
+    min-height: 60vh; /* Altura mínima para centralização vertical */
 }
 
 /* Estilo para os formulários */
@@ -253,14 +253,14 @@ button:hover {
     max-width: 800px; /* Limita a largura do carrinho */
     margin: 0 auto; /* Centraliza o carrinho na página */
     padding: 20px; /* Adiciona espaçamento interno */
-    background-color: #f9f9f9; /* Cor de fundo clara */
+    background-color: #000000; /* Cor de fundo clara */
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 h1 {
     text-align: center; /* Centraliza o título */
-    color: #333; /* Cor do texto */
+    color: #05f1e6; /* Cor do texto */
 }
 
 table {
@@ -272,22 +272,101 @@ table {
 th, td {
     padding: 12px; /* Espaçamento interno nas células */
     text-align: left; /* Alinha o texto à esquerda */
-    border-bottom: 1px solid #ddd; /* Linha de separação entre as linhas */
+    border-bottom: 1px solid #080606; /* Linha de separação entre as linhas */
 }
 
 th {
-    background-color: #4CAF50; /* Cor de fundo do cabeçalho */
-    color: white; /* Cor do texto do cabeçalho */
+    background-color: #000000; /* Cor de fundo do cabeçalho */
+    color: rgb(3, 248, 215); /* Cor do texto do cabeçalho */
 }
 
 tr:hover {
-    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+    background-color: #000000; /* Cor de fundo ao passar o mouse */
 }
 
 a {
     display: inline-block; /* Exibe como bloco */
     margin-top: 20px; /* Espaçamento acima dos links */
     padding: 10px 15px; /* Espaçamento interno dos botões */
-    background-color: #4CAF50; /* Cor de fundo dos botões */
-    color: white; /* Cor do texto dos botões */
+    background-color: #06edf5; /* Cor de fundo dos botões */
+    color: rgb(9, 241, 203); /* Cor do texto dos botões */
     text-decoration: none; /* Remove sublinhado */
+}
+
+.container {
+    max-width: 800px; /* Largura máxima do contêiner */
+    margin: 0 auto; /* Centraliza o contêiner */
+    padding: 20px; /* Espaçamento interno */
+    background-color: #000000; /* Cor de fundo */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+}
+
+.product-form {
+    margin-bottom: 30px; /* Espaçamento abaixo do formulário */
+}
+
+.product-item {
+    background-color: #222; /* Fundo cinza escuro */
+    border: 1px solid #04f8cf; /* Borda ciano */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    margin-bottom: 15px; /* Espaçamento entre os produtos */
+}
+
+.product-item h3 {
+    color: #00ffff; /* Cor ciano para o nome do produto */
+}
+
+.product-item p {
+    color: #ffffff; /* Cor branca para a descrição e preço */
+}
+
+/* Estilos para a página de perfil */
+.profile-container {
+    max-width: 800px; /* Largura máxima do contêiner */
+    margin: 0 auto; /* Centraliza o contêiner */
+    padding: 20px; /* Espaçamento interno */
+    background-color: #222; /* Fundo cinza escuro */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
+    color: #00ffff; /* Cor do texto em ciano */
+}
+
+.profile-container h1 {
+    color: #00ffff; /* Cor ciano para o título */
+    text-align: center; /* Centraliza o título */
+}
+
+.profile-container p {
+    margin: 10px 0; /* Espaçamento entre parágrafos */
+    color: #00ffff; /* Cor ciano para os parágrafos */
+}
+
+.profile-container a {
+    color: #04f8cf; /* Cor ciano para os links */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: bold; /* Texto em negrito */
+}
+
+.profile-container a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
+/* Estilo para o botão de edição do perfil */
+.profile-container .edit-profile-button {
+    display: inline-block; /* Exibe como bloco */
+    margin-top: 20px; /* Espaçamento acima do botão */
+    padding: 10px 15px; /* Espaçamento interno do botão */
+    background-color: #000000; /* Cor de fundo do botão */
+    color: #07f7eb; /* Cor do texto do botão */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.profile-container .edit-profile-button:hover {
+    background-color: #000000; /* Cor de fundo ao passar o mouse */
+    color: #08f1de; /* Cor do texto ao passar o mouse */
+}

@@ -20,6 +20,37 @@ def configurar_rotas(app):
         conn.close()
         return render_template('index.html', produtos=produtos)
 
+    # Rota para visualizar produtos
+    @app.route('/products')
+    def products():
+        conn = get_db_connection()
+        produtos = conn.execute('SELECT * FROM produtos').fetchall()
+        conn.close()
+        return render_template('products.html', produtos=produtos)
+
+    # Rota para buscar produtos
+    @app.route('/search', methods=['GET'])
+    def search():
+        query = request.args.get('query')
+        conn = get_db_connection()
+        produtos = conn.execute('SELECT * FROM produtos WHERE nome LIKE ?', ('%' + query + '%',)).fetchall()
+        conn.close()
+        return render_template('products.html', produtos=produtos)
+
+    # Rota para o perfil do usuário
+    @app.route('/profile')
+    def profile():
+        if 'user_id' not in session:
+            flash('Você precisa estar logado para acessar seu perfil.')
+            return redirect(url_for('login'))
+
+        usuario_id = session['user_id']
+        conn = get_db_connection()
+        usuario = conn.execute('SELECT * FROM usuarios WHERE id = ?', (usuario_id,)).fetchone()
+        conn.close()
+
+        return render_template('profile.html', usuario=usuario)
+
     # Rota para registro de usuários
     @app.route('/register', methods=['GET', 'POST'])
     def register():
@@ -157,3 +188,41 @@ def configurar_rotas(app):
 
         flash('Pagamento processado com sucesso! Obrigado pela sua compra.')
         return redirect(url_for('index'))
+
+    # Rota para editar o perfil
+    @app.route('/edit_profile', methods=['GET', 'POST'])
+    def edit_profile():
+        if 'user_id' not in session:
+            flash('Você precisa estar logado para editar seu perfil.')
+            return redirect(url_for('login'))
+
+        usuario_id = session['user_id']
+        conn = get_db_connection()
+
+        if request.method == 'POST':
+            nome = request.form['nome']
+            email = request.form['email']
+            foto_perfil = request.files.get('foto_perfil')
+
+            # Salvar a nova foto de perfil, se fornecida
+            if foto_perfil:
+                filename = secure_filename(foto_perfil.filename)
+                foto_perfil.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                foto_path = os.path.join('uploads', filename)  # Caminho relativo para o banco de dados
+
+                # Atualizar o banco de dados com o novo caminho da foto
+                conn.execute('UPDATE usuarios SET nome = ?, email = ?, foto_perfil = ? WHERE id = ?',
+                             (nome, email, foto_path, usuario_id))
+            else:
+                # Atualizar apenas nome e email se não houver nova foto
+                conn.execute('UPDATE usuarios SET nome = ?, email = ? WHERE id = ?',
+                             (nome, email, usuario_id))
+
+            conn.commit()
+            conn.close()
+            flash('Perfil atualizado com sucesso!')
+            return redirect(url_for('profile'))
+
+        usuario = conn.execute('SELECT * FROM usuarios WHERE id = ?', (usuario_id,)).fetchone()
+        conn.close()
+        return render_template('edit_profile.html', usuario=usuario)
