@@ -1,10 +1,9 @@
-<!-- templates/index.html -->
 {% extends 'base.html' %}
 
-{% block title %}Bem-vindo à Loja - Produtos Disponíveis{% endblock %}
+{% block title %}Produtos{% endblock %}
 
 {% block content %}
-<h1>Produtos Disponíveis</h1>
+<h1>Lista de Produtos</h1>
 <div class="produtos">
     {% for produto in produtos %}
     <div class="card produto">

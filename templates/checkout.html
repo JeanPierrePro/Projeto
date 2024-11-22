@@ -9,5 +9,14 @@
     <h1>Finalizar Compra</h1>
     <p>Obrigado por sua compra!</p>
     <a href="{{ url_for('index') }}">Voltar para a Loja</a>
+    <form action="{{ url_for('process_payment') }}" method="POST">
+        <label for="card_number">Número do Cartão:</label>
+        <input type="text" id="card_number" name="card_number" required placeholder="XXXX-XXXX-XXXX-XXXX">
+        <label for="expiry_date">Data de Validade:</label>
+        <input type="text" id="expiry_date" name="expiry_date" required placeholder="MM/AA">
+        <label for="cvv">Código de Segurança (CVV):</label>
+        <input type="text" id="cvv" name="cvv" required placeholder="XXX">
+        <button type="submit">Finalizar Compra</button>
+    </form>
 </body>
 </html>

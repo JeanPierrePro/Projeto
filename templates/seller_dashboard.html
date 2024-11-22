@@ -4,19 +4,45 @@
 {% block title %}Painel do Vendedor{% endblock %}
 
 {% block content %}
-<h1>Painel do Vendedor</h1>
-<form method="POST" enctype="multipart/form-data">
-    <label for="nome">Nome do Produto:</label>
-    <input type="text" name="nome" required>
-    <label for="descricao">Descrição:</label>
-    <input type="text" name="descricao" required>
-    <label for="preco">Preço:</label>
-    <input type="number" name="preco" step="0.01" required>
-    <label for="unidade">Unidade Disponível:</label>
-    <input type="number" name="unidade" required>
-    <label for="imagem">Imagem do Produto:</label>
-    <input type="file" name="imagem" accept="image/*" required>
-    <button type="submit">Adicionar Produto</button>
-</form>
-<a href="{{ url_for('index') }}">Voltar para a Loja</a>
+<div class="container">
+    <h1>Painel do Vendedor</h1>
+    
+    <!-- Formulário para adicionar produtos -->
+    <form method="POST" enctype="multipart/form-data" class="product-form">
+        <label for="nome">Nome do Produto:</label>
+        <input type="text" name="nome" required>
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao" required>
+
+        <label for="preco">Preço:</label>
+        <input type="number" name="preco" step="0.01" required>
+
+        <label for="unidade">Unidade Disponível:</label>
+        <input type="number" name="unidade" required>
+
+        <label for="imagem">Imagem do Produto:</label>
+        <input type="file" name="imagem" accept="image/*" required>
+
+        <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <!-- Seção para listar produtos -->
+    <h2>Produtos Adicionados</h2>
+    <div class="product-list">
+        {% for produto in produtos %}
+        <div class="product-item">
+            <h3>{{ produto.nome }}</h3>
+            <p>{{ produto.descricao }}</p>
+            <p>Preço: R$ {{ produto.preco }}</p>
+            <p>Unidades Disponíveis: {{ produto.unidade }}</p>
+            {% if produto.imagem %}
+                <img src="{{ url_for('static', filename=produto.imagem) }}" alt="{{ produto.nome }}" style="width: 100px; height: auto;">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="{{ url_for('index') }}">Voltar para a Loja</a>
+</div>
 {% endblock %}
