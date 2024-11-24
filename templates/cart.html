@@ -1,0 +1,42 @@
+<!-- templates/cart.html -->
+{% extends 'base.html' %}
+
+{% block title %}Carrinho de Compras{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Seu Carrinho de Compras</h1>
+    <table>
+        <tr>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+        </tr>
+        {% for item in itens %}
+        <tr>
+            <td>{{ item.nome }}</td>
+            <td>R$ {{ item.preco }}</td>
+            <td>{{ item.quantidade }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Detalhes do Pagamento</h2>
+    <form action="{{ url_for('process_payment') }}" method="POST">
+        <label for="card_number">Número do Cartão:</label>
+        <input type="text" id="card_number" name="card_number" required placeholder="XXXX-XXXX-XXXX-XXXX">
+
+        <label for="card_name">Nome do Titular:</label>
+        <input type="text" id="card_name" name="card_name" required placeholder="Nome como aparece no cartão">
+
+        <label for="expiry_date">Data de Validade:</label>
+        <input type="text" id="expiry_date" name="expiry_date" required placeholder="MM/AA">
+
+        <label for="cvv">Código de Segurança (CVV):</label>
+        <input type="text" id="cvv" name="cvv" required placeholder="XXX">
+
+        <button type="submit">Finalizar Compra</button>
+    </form>
+    <a href="{{ url_for('index') }}">Continuar Comprando</a>
+</div>
+{% endblock %}

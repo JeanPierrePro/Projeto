@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block content %}
+<h1>Lista de Produtos</h1>
+<div class="produtos">
+    {% for produto in produtos %}
+    <div class="card produto">
+        <h2 style="color: #00ffff;">{{ produto.nome }}</h2>
+        <p style="color: #00ffff;">{{ produto.descricao }}</p>
+        <p>Preço: R$ {{ produto.preco }}</p>
+        {% if produto.imagem %}
+            <img src="{{ url_for('static', filename=produto.imagem) }}" alt="{{ produto.nome }}" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+        {% else %}
+            <p>Imagem não disponível.</p>
+        {% endif %}
+        <form action="{{ url_for('add_to_cart', produto_id=produto.id) }}" method="POST">
+            <input type="number" name="quantidade" value="1" min="1" required>
+            <button type="submit">Adicionar ao Carrinho</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

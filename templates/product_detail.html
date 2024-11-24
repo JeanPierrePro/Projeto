@@ -1,0 +1,22 @@
+<h1>{{ produto.nome }}</h1>
+<p>{{ produto.descricao }}</p>
+<p>Preço: R$ {{ produto.preco }}</p>
+{% if produto.imagem %}
+    <img src="{{ url_for('static', filename=produto.imagem) }}" alt="{{ produto.nome }}" style="width: 100%; height: auto;">
+{% endif %}
+
+<!-- Formulário de Avaliação -->
+<h2>Avalie este Produto</h2>
+<form action="{{ url_for('add_review', produto_id=produto.id) }}" method="POST">
+    <label for="rating">Avaliação:</label>
+    <select name="rating" required>
+        <option value="1">1 Estrela</option>
+        <option value="2">2 Estrelas</option>
+        <option value="3">3 Estrelas</option>
+        <option value="4">4 Estrelas</option>
+        <option value="5">5 Estrelas</option>
+    </select>
+    <label for="comment">Comentário:</label>
+    <textarea name="comment" required></textarea>
+    <button type="submit">Enviar Avaliação</button>
+</form>
