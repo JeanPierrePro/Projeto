@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Loja online com os melhores produtos.">
+    <title>{% block title %}Loja Online{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                J&M©
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('products') }}">Produtos</a></li>
+                <li><a href="{{ url_for('cart') }}">Carrinho</a></li>
+                <li><a href="{{ url_for('profile') }}">Minha Conta</a></li>
+                
+                <!-- Exibe o link de login apenas se o usuário não estiver logado -->
+                {% if 'user_id' not in session %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+            
+            <!-- Exibe ou nao a caixa de pesquisa -->
+            {% if request.endpoint not in ['index', 'login', 'profile'] %}
+                {% include 'partials/ui.html' %}
+            </form>
+            {% endif %}
+        </nav>
+    </header>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

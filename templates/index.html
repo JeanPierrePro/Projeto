@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Bem-vindo à Loja - Produtos Disponíveis{% endblock %}
+
+{% block content %}
+    <!-- Seção de Pesquisa -->
+    <div class="search-section">
+        <form class="search-form" action="{{ url_for('search') }}" method="GET">
+            <input type="text" name="query" placeholder="Procure o que deseja..." required>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Produtos em colunas -->
+    <div class="produtos">
+        {% for produto in produtos %}
+        <div class="card produto" 
+            data-id="{{ produto.id }}"
+            data-nome="{{ produto.nome }}"
+            data-descricao="{{ produto.descricao }}"
+            data-preco="{{ produto.preco }}"
+            data-imagem="{{ url_for('static', filename=produto.imagem) }}"
+            onclick="openModalFromData(this)">
+            <h2>{{ produto.nome }}</h2>
+            <p>{{ produto.descricao }}</p>
+            <p>Preço: R$ {{ produto.preco }}</p>
+            {% if produto.imagem %}
+                <img src="{{ url_for('static', filename=produto.imagem) }}" alt="{{ produto.nome }}" class="produto-imagem">
+            {% else %}
+                <p>Imagem não disponível.</p>
+            {% endif %}
+        </div>  
+        {% endfor %}
+    </div>
+
+    <!-- Modal para exibir os detalhes do produto -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="close" class="close-btn">&times;</span>
+            <div class="product-details">
+                <img id="product-image" src="" alt="Produto" class="modal-image">
+                <div class="product-info">
+                    <h2 id="product-name"></h2>
+                    <p id="product-description"></p>
+                    <p>Preço: R$ <span id="product-price"></span></p>
+                    <form id="add-to-cart-form" action="" method="POST">
+                        <input type="number" id="product-quantity" nameasdewa="quantidade" value="1" min="1" required>
+                        <button type="submit">Adicionar ao Carrinho</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}

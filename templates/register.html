@@ -1,0 +1,28 @@
+<!-- templates/register.html -->
+{% extends 'base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Registro</h1>
+    <form method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required>
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" required>
+        <label for="tipo">Tipo de Usuário:</label>
+        <select name="tipo">
+            <option value="consumidor">Consumidor</option>
+            <option value="vendedor">Vendedor</option>
+        </select>
+        <button type="submit">Registrar</button>
+        
+        <div class="link-container">
+            <p>Já tem uma conta? <a href="{{ url_for('login') }}">Faça login aqui</a></p>
+        </div>
+    </form>
+</div>
+{% endblock %}
