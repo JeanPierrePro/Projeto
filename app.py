@@ -1,7 +1,9 @@
 from flask import Flask
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            static_folder='static',  # define a pasta de arquivos estáticos
+            static_url_path='/static')  # define o prefixo da URL para arquivos estáticos
 app.secret_key = 'sua_chave_secreta'
 
 # Defina o diretório para armazenar as imagens

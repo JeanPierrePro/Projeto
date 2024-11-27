@@ -30,6 +30,7 @@
             {% endif %}
         </nav>
     </header>
+
     <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -41,7 +42,13 @@
             {% endif %}
         {% endwith %}
 
+        <form action="{{ url_for('search') }}" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Buscar produtos..." required>
+            <button type="submit">Buscar.</button>
+        </form>
+
         {% block content %}{% endblock %}
     </div>
 </body>
 </html>
+
